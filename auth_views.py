@@ -29,12 +29,12 @@ def validate_login():
     else:
         if user.check_password(password):
             login_user(user)
-            return redirect(url_for("secret.message"))
+            return redirect(url_for("secret.message", _external=True, _scheme='https'))
         else:
-            return redirect(url_for("home"))
+            return redirect(url_for("home", _external=True, _scheme='https'))
 
 
 @auth_blueprint.route("/logout", methods=["GET"])
 def logout():
     logout_user()
-    return redirect(url_for("home"))
+    return redirect(url_for("home", _external=True, _scheme='https'))
